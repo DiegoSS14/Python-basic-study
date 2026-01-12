@@ -1,8 +1,8 @@
 class Carro:
     def __init__(self, marca = '', modelo = '', ano = 2000):
-        self.marca = marca
-        self.modelo = modelo
-        self.ano = ano
+        self._marca = marca
+        self._modelo = modelo
+        self._ano = ano
         
     @property
     def marca(self):

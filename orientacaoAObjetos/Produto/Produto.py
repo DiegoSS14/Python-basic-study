@@ -8,8 +8,10 @@ class Produto:
         self.valor = valor
         self.quantidade = quantidade
 
+
     def comprar(self, quantidade):
         self.quantidade += quantidade
+        self.funcao()
 
     def vender(self, quantidade):
         if quantidade > self.quantidade:

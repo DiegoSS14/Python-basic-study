@@ -1,12 +1,15 @@
-class Ninja:
+from abc import ABC, abstractmethod
+
+class Ninja(ABC):
     def __init__(self, name, aldeia, elementoChakra, nivel):
         self.name = name
         self.aldeia = aldeia
         self.elementochakra = elementoChakra
         self.nivel = nivel
-        
+    
+    @abstractmethod
     def throwJutsu(self, jutsu):
-        return jutsu
+        ...
         
 class Uchiha(Ninja):
     def __init__(self, name, aldeia, elementoChakra, nivel, sharingan = False, lider = False):
@@ -18,14 +21,8 @@ class Uchiha(Ninja):
         self.sharingan = sharingan
         self.lider = lider
         
-class Uzumaki(Ninja):
-    def __init__(self, name, aldeia, elementoChakra, nivel, jutsuSelamento = 0):
-        super().__init__(name, aldeia, elementoChakra, nivel)
-        self.name = name
-        self.aldeia = aldeia
-        self.elementoChakra = elementoChakra
-        self.nivel = nivel
-        self.jutsuSelamento = jutsuSelamento
+    def throwJutsu(self, jutsu, gasto, dano):
+        return f'{jutsu}!!, Você gastou {gasto}% do seu chakra. Dano esperado de {dano}%'
         
 class Procurado:
     def __init__(self, recompensa, crimes):
@@ -38,11 +35,7 @@ class UchihaProcurado(Uchiha, Procurado):
         Procurado.__init__(self, recompensa, crimes)
         self.recompensa = recompensa
         self.crimes = crimes
-        
-ninja1 = UchihaProcurado('Itachi Uchiha', 'Aldeia da Folha', 'Fogo','Jonin', True, False, 800000, 200)
-ninja2 = UchihaProcurado('Sasuke Uchiha', 'Aldeia da Folha', 'Raio', 'Genin', True, False, 200000, 30)
 
-print(ninja1.__dict__)
-print(ninja1.throwJutsu('Fire ball jutsu!'))
+ninja2 = UchihaProcurado('Sasuke Uchiha', 'Aldeia da Folha', 'Raio', 'Genin', True, False, 200000, 30)
 print(ninja2.__dict__)
-print(ninja2.throwJutsu('Chidori!'))
+print(ninja2.throwJutsu('Chidori', 20, 10))
